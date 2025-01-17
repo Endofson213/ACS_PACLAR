@@ -1,10 +1,12 @@
 namespace ACS_PACLAR
 {
-    public partial class Dashboard : Form
+    public partial class Main : Form
     {
-        public Dashboard()
+        public Main()
         {
             InitializeComponent();
+
+
         }
         private void Dashboard_Load(object sender, EventArgs e)
         {
@@ -20,6 +22,19 @@ namespace ACS_PACLAR
             this.Hide();
         }
 
+        private void bookingsBtn_Click(object sender, EventArgs e)
+        {
+            BookingsForm bookingsForm = new BookingsForm();
 
+            bookingsForm.Show();
+
+            this.Hide();
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
