@@ -31,6 +31,7 @@ namespace ACS_PACLAR
             connection = new SqlConnection(connectionString);
             LoadClientDetails();
         }
+
         private void LoadClientDetails()
         {
             try
@@ -48,7 +49,6 @@ namespace ACS_PACLAR
 
                 bookingDetailsData.DataSource = dataTable;
 
-                // Calculate total amount
                 decimal totalAmount = 0;
                 foreach (DataRow row in dataTable.Rows)
                 {
@@ -65,6 +65,11 @@ namespace ACS_PACLAR
             {
                 connection.Close();
             }
+        }
+
+        private void totalAmountLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

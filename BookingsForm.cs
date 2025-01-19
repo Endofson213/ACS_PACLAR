@@ -16,33 +16,6 @@ namespace ACS_PACLAR
 
         private SqlConnection connection;
 
-        public BookingsForm()
-        {
-            InitializeComponent();
-
-            string connectionString = @"Server=(localdb)\mssqllocaldb;Database=acsDB;Trusted_Connection=True;";
-            connection = new SqlConnection(connectionString);
-
-            LoadClients();
-            LoadBookings();
-        }
-        public static class DatabaseHelper
-        {
-            private static readonly string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
-            public static SqlConnection GetConnection()
-            {
-                return new SqlConnection(connectionString);
-            }
-        }
-
-        private Dictionary<string, decimal> services = new Dictionary<string, decimal>
-{
-            { "Plumbing", 150 },
-            { "Electrical", 200 },
-            { "Masonry", 180 },
-            { "Carpentry Works", 170 }
-        };
 
         private void LoadClients()
         {
@@ -99,7 +72,7 @@ namespace ACS_PACLAR
         }
         private int GenerateBookingID()
         {
-            int bookingID = 1; // Default ID for the first record.
+            int bookingID = 1;
             try
             {
                 connection.Open();
@@ -122,6 +95,25 @@ namespace ACS_PACLAR
             return bookingID;
         }
 
+        public BookingsForm()
+        {
+            InitializeComponent();
+
+            string connectionString = @"Server=(localdb)\mssqllocaldb;Database=acsDB;Trusted_Connection=True;";
+            connection = new SqlConnection(connectionString);
+
+            LoadClients();
+            LoadBookings();
+        }
+        public static class DatabaseHelper
+        {
+            private static readonly string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
+            public static SqlConnection GetConnection()
+            {
+                return new SqlConnection(connectionString);
+            }
+        }
         private void clientBox_TextChanged(object sender, EventArgs e)
         {
 
@@ -139,30 +131,28 @@ namespace ACS_PACLAR
 
         private void viewDetailsBtn(object sender, EventArgs e)
         {
-            // Ensure a client is selected
             if (clientBox.SelectedItem == null)
             {
                 MessageBox.Show("Please select a client.");
                 return;
             }
 
-            // Ensure a booking is selected
             if (bookingsData.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Please select a booking.");
                 return;
             }
 
-            // Get selected client information
+
             var selectedClient = (KeyValuePair<int, string>)clientBox.SelectedItem;
             int clientID = selectedClient.Key;
             string clientName = selectedClient.Value;
 
-            // Get selected booking information
+
             DataGridViewRow selectedRow = bookingsData.SelectedRows[0];
             int bookingID = Convert.ToInt32(selectedRow.Cells["BookingID"].Value);
 
-            // Pass ClientID, ClientName, and BookingID to the BookingDetailsForm
+       
             BookingDetailsForm bookingDetails = new BookingDetailsForm(clientID, clientName, bookingID);
             bookingDetails.Show();
         }
@@ -171,27 +161,23 @@ namespace ACS_PACLAR
         {
             try
             {
-                // Ensure a client is selected
                 if (clientBox.SelectedItem == null)
                 {
                     MessageBox.Show("Please select a client.");
                     return;
                 }
 
-                // Get selected client details
                 var selectedClient = (KeyValuePair<int, string>)clientBox.SelectedItem;
                 int clientID = selectedClient.Key;
 
-                // Get the current date for the booking date
                 DateTime bookingDate = DateTime.Now;
 
-                // Set a default total amount for the booking
-                decimal totalAmount = 0;  // You can modify this later as needed
 
-                // Open the connection
+                decimal totalAmount = 0; 
+
+ 
                 connection.Open();
 
-                // Insert the new booking into the database
                 string query = "INSERT INTO Bookings (ClientID, BookingDate, TotalAmount) VALUES (@ClientID, @BookingDate, @TotalAmount)";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@ClientID", clientID);
@@ -203,7 +189,7 @@ namespace ACS_PACLAR
                 if (rowsAffected > 0)
                 {
                     MessageBox.Show("Booking added successfully.");
-                    LoadBookings(); // Refresh the bookings list after insertion
+                    LoadBookings();
                 }
                 else
                 {
@@ -216,7 +202,6 @@ namespace ACS_PACLAR
             }
             finally
             {
-                // Ensure the connection is closed even if an error occurs
                 if (connection.State == ConnectionState.Open)
                 {
                     connection.Close();

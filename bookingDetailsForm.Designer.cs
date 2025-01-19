@@ -204,6 +204,7 @@
             totalAmountLabel.Size = new Size(32, 15);
             totalAmountLabel.TabIndex = 56;
             totalAmountLabel.Text = "Total";
+            totalAmountLabel.Click += totalAmountLabel_Click;
             // 
             // BookingDetailsForm
             // 

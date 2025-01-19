@@ -31,13 +31,13 @@
             panel1 = new Panel();
             label1 = new Label();
             panel2 = new Panel();
-            button8 = new Button();
-            button7 = new Button();
             button6 = new Button();
             button5 = new Button();
             button4 = new Button();
             bookingsBtn = new Button();
             clientsBtn = new Button();
+            button7 = new Button();
+            button8 = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -74,24 +74,6 @@
             panel2.Size = new Size(716, 247);
             panel2.TabIndex = 12;
             // 
-            // button8
-            // 
-            button8.Location = new Point(3, 177);
-            button8.Name = "button8";
-            button8.Size = new Size(128, 23);
-            button8.TabIndex = 20;
-            button8.Text = "Weekly Schedule";
-            button8.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            button7.Location = new Point(3, 148);
-            button7.Name = "button7";
-            button7.Size = new Size(128, 23);
-            button7.TabIndex = 19;
-            button7.Text = "Reports/View";
-            button7.UseVisualStyleBackColor = true;
-            // 
             // button6
             // 
             button6.Location = new Point(3, 119);
@@ -116,9 +98,9 @@
             button4.Name = "button4";
             button4.Size = new Size(128, 23);
             button4.TabIndex = 16;
-            button4.Text = "Setup Preferences";
+            button4.Text = "Services";
             button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
+            button4.Click += servicesBtn_Click;
             // 
             // bookingsBtn
             // 
@@ -140,6 +122,24 @@
             clientsBtn.UseVisualStyleBackColor = true;
             clientsBtn.Click += clientsBtn_Click;
             // 
+            // button7
+            // 
+            button7.Location = new Point(3, 148);
+            button7.Name = "button7";
+            button7.Size = new Size(128, 23);
+            button7.TabIndex = 19;
+            button7.Text = "Reports/View";
+            button7.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            button8.Location = new Point(3, 177);
+            button8.Name = "button8";
+            button8.Size = new Size(128, 23);
+            button8.TabIndex = 20;
+            button8.Text = "Weekly Schedule";
+            button8.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -149,7 +149,7 @@
             Controls.Add(panel1);
             Name = "Main";
             Text = "Main";
-            Load += Dashboard_Load;
+            Load += main_load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
@@ -164,8 +164,8 @@
         private Button clientsBtn;
         private Button button4;
         private Button button5;
-        private Button button7;
         private Button button6;
         private Button button8;
+        private Button button7;
     }
 }

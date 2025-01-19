@@ -8,7 +8,7 @@ namespace ACS_PACLAR
 
 
         }
-        private void Dashboard_Load(object sender, EventArgs e)
+        private void main_load(object sender, EventArgs e)
         {
 
         }
@@ -32,8 +32,13 @@ namespace ACS_PACLAR
 
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void servicesBtn_Click(object sender, EventArgs e)
         {
+            ServicesForm servicesForm = new ServicesForm();
+
+           servicesForm.Show();
+
+            this.Hide();
 
         }
     }
