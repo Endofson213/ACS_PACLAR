@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using ACS_PACLAR.StringMessages;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +19,7 @@ namespace ACS_PACLAR
         {
             InitializeComponent();
 
-            string connectionString = @"Server=(localdb)\mssqllocaldb;Database=acsDB;Trusted_Connection=True;";
+            string connectionString = ACSMessages.DBConnectionString;
             connection = new SqlConnection(connectionString);
 
             //only numbers
@@ -32,17 +33,17 @@ namespace ACS_PACLAR
         private void LoadDataGrid()
         {
             connection.Open();
-            string query = "SELECT ServiceID, Name, HourlyRate FROM dbo.Services";
+            string query = ACSMessages.LoadServicesData;
             SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
             servicesData.DataSource = dataTable;
-            if (servicesData.Columns["ServiceID"] != null)
+            if (servicesData.Columns[ACSMessages.ServiceID] != null)
             {
-                servicesData.Columns["ServiceID"].Visible = false;
+                servicesData.Columns[ACSMessages.ServiceID].Visible = false;
             }
 
-            servicesData.Columns["HourlyRate"].DefaultCellStyle.Format = "N2";
+            servicesData.Columns[ACSMessages.HourlyRate].DefaultCellStyle.Format = "N2";
         }
 
         private void OpenConnection()

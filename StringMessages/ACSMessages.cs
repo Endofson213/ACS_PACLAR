@@ -27,7 +27,7 @@ namespace ACS_PACLAR.StringMessages
         public const string EmptyAddress = "Address is required. Please enter a valid address.";
         public const string EmptyEmail = "Email is required. Please enter a valid email.";
 
-        public const string ClientIDPlaceHolder = "@ClientID";
+        public const string ClientIDPlaceholder = "@ClientID";
         public const string NamePlaceholder = "@Name";
         public const string ContactPlaceholder = "@ContactNumber";
         public const string AddressPlaceholder = "@Address";
@@ -43,6 +43,14 @@ namespace ACS_PACLAR.StringMessages
         public const string ConfirmDelete = "Confirm Delete";
         public const string ClientDeletedSuccessfully = "Client deleted successfully.";
         public const string Success = "Success";
+        public const string Edit = "Edit";
+        public const string Delete = "Delete";
+        public const string Error = "Error";
+
+        //ServicesForm
+        public const string LoadServicesData = "SELECT ServiceID, Name, HourlyRate FROM dbo.Services";
+        public const string ServiceID = "ServiceID";
+        public const string HourlyRate = "HourlyRate";
 
     }
 }

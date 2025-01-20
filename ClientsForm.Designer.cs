@@ -38,26 +38,27 @@
             addressBox = new TextBox();
             emailBox = new TextBox();
             addBtn = new Button();
-            editBtn = new Button();
-            deleteBtn = new Button();
             label6 = new Label();
             button1 = new Button();
+            clientSearch = new TextBox();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)clientsData).BeginInit();
             SuspendLayout();
             // 
             // clientsData
             // 
+            clientsData.AllowUserToAddRows = false;
             clientsData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            clientsData.Location = new Point(290, 66);
+            clientsData.Location = new Point(22, 266);
             clientsData.Name = "clientsData";
             clientsData.ReadOnly = true;
-            clientsData.Size = new Size(572, 415);
+            clientsData.Size = new Size(688, 186);
             clientsData.TabIndex = 2;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(22, 96);
+            label1.Location = new Point(229, 95);
             label1.Name = "label1";
             label1.Size = new Size(42, 15);
             label1.TabIndex = 3;
@@ -66,7 +67,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(22, 151);
+            label2.Location = new Point(229, 150);
             label2.Name = "label2";
             label2.Size = new Size(52, 15);
             label2.TabIndex = 4;
@@ -75,7 +76,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(22, 125);
+            label3.Location = new Point(229, 124);
             label3.Name = "label3";
             label3.Size = new Size(99, 15);
             label3.TabIndex = 5;
@@ -84,7 +85,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(22, 180);
+            label4.Location = new Point(229, 179);
             label4.Name = "label4";
             label4.Size = new Size(39, 15);
             label4.TabIndex = 6;
@@ -92,35 +93,35 @@
             // 
             // nameBox
             // 
-            nameBox.Location = new Point(120, 88);
+            nameBox.Location = new Point(327, 87);
             nameBox.Name = "nameBox";
             nameBox.Size = new Size(126, 23);
             nameBox.TabIndex = 8;
             // 
             // contactBox
             // 
-            contactBox.Location = new Point(120, 117);
+            contactBox.Location = new Point(327, 116);
             contactBox.Name = "contactBox";
             contactBox.Size = new Size(126, 23);
             contactBox.TabIndex = 16;
             // 
             // addressBox
             // 
-            addressBox.Location = new Point(120, 143);
+            addressBox.Location = new Point(327, 142);
             addressBox.Name = "addressBox";
             addressBox.Size = new Size(126, 23);
             addressBox.TabIndex = 17;
             // 
             // emailBox
             // 
-            emailBox.Location = new Point(120, 172);
+            emailBox.Location = new Point(327, 171);
             emailBox.Name = "emailBox";
             emailBox.Size = new Size(126, 23);
             emailBox.TabIndex = 18;
             // 
             // addBtn
             // 
-            addBtn.Location = new Point(20, 213);
+            addBtn.Location = new Point(327, 213);
             addBtn.Name = "addBtn";
             addBtn.Size = new Size(54, 23);
             addBtn.TabIndex = 19;
@@ -128,31 +129,11 @@
             addBtn.UseVisualStyleBackColor = true;
             addBtn.Click += addBtn_Click;
             // 
-            // editBtn
-            // 
-            editBtn.Location = new Point(132, 213);
-            editBtn.Name = "editBtn";
-            editBtn.Size = new Size(54, 23);
-            editBtn.TabIndex = 20;
-            editBtn.Text = "Edit";
-            editBtn.UseVisualStyleBackColor = true;
-            editBtn.Click += editBtn_Click;
-            // 
-            // deleteBtn
-            // 
-            deleteBtn.Location = new Point(192, 213);
-            deleteBtn.Name = "deleteBtn";
-            deleteBtn.Size = new Size(54, 23);
-            deleteBtn.TabIndex = 21;
-            deleteBtn.Text = "Delete";
-            deleteBtn.UseVisualStyleBackColor = true;
-            deleteBtn.Click += deleteBtn_Click;
-            // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label6.Location = new Point(383, 26);
+            label6.Location = new Point(303, 26);
             label6.Name = "label6";
             label6.Size = new Size(90, 21);
             label6.TabIndex = 1;
@@ -169,16 +150,33 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += backBtn_Click;
             // 
+            // clientSearch
+            // 
+            clientSearch.AcceptsReturn = true;
+            clientSearch.Location = new Point(88, 237);
+            clientSearch.Name = "clientSearch";
+            clientSearch.Size = new Size(100, 23);
+            clientSearch.TabIndex = 25;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(37, 240);
+            label5.Name = "label5";
+            label5.Size = new Size(45, 15);
+            label5.TabIndex = 26;
+            label5.Text = "Search:";
+            // 
             // ClientsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(874, 493);
+            ClientSize = new Size(733, 506);
+            Controls.Add(label5);
+            Controls.Add(clientSearch);
             Controls.Add(button1);
-            Controls.Add(deleteBtn);
-            Controls.Add(editBtn);
             Controls.Add(addBtn);
             Controls.Add(emailBox);
             Controls.Add(addressBox);
@@ -209,9 +207,9 @@
         private TextBox addressBox;
         private TextBox emailBox;
         private Button addBtn;
-        private Button editBtn;
-        private Button deleteBtn;
         private Label label6;
         private Button button1;
+        private TextBox clientSearch;
+        private Label label5;
     }
 }
