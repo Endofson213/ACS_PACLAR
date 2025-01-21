@@ -68,7 +68,7 @@ namespace ACS_PACLAR
 
                 DataGridViewRow selectedRow = servicesData.Rows[e.RowIndex];
 
-                nameBox.Text = selectedRow.Cells["Name"].Value?.ToString();
+                nameBox.Text = selectedRow.Cells["ServiceName"].Value?.ToString();
                 hourlyrateBox.Text = selectedRow.Cells["hourlyrate"].Value?.ToString();
             }
         }
@@ -115,11 +115,11 @@ namespace ACS_PACLAR
             {
                 OpenConnection();
 
-                string query = "INSERT INTO dbo.Services (Name, HourlyRate) VALUES (@Name, @HourlyRate)";
+                string query = "INSERT INTO dbo.Services (ServiceName, HourlyRate) VALUES (@ServiceName, @HourlyRate)";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@Name", name);
+                    command.Parameters.AddWithValue("@ServiceName", name);
                     command.Parameters.AddWithValue("@HourlyRate", hourlyRate);
 
                     command.ExecuteNonQuery();
@@ -169,11 +169,11 @@ namespace ACS_PACLAR
             {
                 OpenConnection();
 
-                string query = "UPDATE dbo.Services SET Name = @Name, HourlyRate = @HourlyRate WHERE ServiceID = @ServiceID";
+                string query = "UPDATE dbo.Services SET ServiceName = @ServiceName, HourlyRate = @HourlyRate WHERE ServiceID = @ServiceID";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@Name", name);
+                    command.Parameters.AddWithValue("@ServiceName", name);
                     command.Parameters.AddWithValue("@HourlyRate", hourlyRate);
                     command.Parameters.AddWithValue("@ServiceID", serviceId);
 

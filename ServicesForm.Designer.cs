@@ -115,10 +115,20 @@
             // 
             // servicesData
             // 
+            servicesData.AllowUserToAddRows = false;
+            servicesData.AllowUserToDeleteRows = false;
+            servicesData.AllowUserToResizeColumns = false;
+            servicesData.AllowUserToResizeRows = false;
             servicesData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             servicesData.Location = new Point(314, 50);
+            servicesData.MultiSelect = false;
             servicesData.Name = "servicesData";
             servicesData.ReadOnly = true;
+            servicesData.RowHeadersVisible = false;
+            servicesData.ShowCellErrors = false;
+            servicesData.ShowCellToolTips = false;
+            servicesData.ShowEditingIcon = false;
+            servicesData.ShowRowErrors = false;
             servicesData.Size = new Size(269, 215);
             servicesData.TabIndex = 26;
             // 

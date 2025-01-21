@@ -11,13 +11,13 @@ namespace ACS_PACLAR.StringMessages
 
         //ClientsForm
         public const string DBConnectionString = @"Server=(localdb)\mssqllocaldb;Database=acsDB;Trusted_Connection=True;";
-        public const string LoadClientData = "SELECT ClientID, Name, ContactNumber, Address, Email FROM dbo.ClientsProfile";
-        public const string AddClientQuery = "INSERT INTO dbo.ClientsProfile (Name, ContactNumber, Address, Email) VALUES (@Name, @ContactNumber, @Address, @Email)";
-        public const string UpdateClientQuery = "UPDATE dbo.ClientsProfile SET Name = @Name, ContactNumber = @ContactNumber, Address = @Address, Email = @Email WHERE ClientID = @ClientID";
+        public const string LoadClientData = "SELECT ClientID, ClientName, ContactNumber, Address, Email FROM dbo.ClientsProfile";
+        public const string AddClientQuery = "INSERT INTO dbo.ClientsProfile (ClientName, ContactNumber, Address, Email) VALUES (@ClientName, @ContactNumber, @Address, @Email)";
+        public const string UpdateClientQuery = "UPDATE dbo.ClientsProfile SET ClientName = @ClientName, ContactNumber = @ContactNumber, Address = @Address, Email = @Email WHERE ClientID = @ClientID";
         public const string DeleteClientQuery = "DELETE FROM dbo.ClientsProfile WHERE ClientID = @ClientID";
 
         public const string ClientID = "ClientID";
-        public const string CellClickName = "Name";
+        public const string CellClickClientName = "ClientName";
         public const string CellClickContactNumber = "ContactNumber";
         public const string CellClickAddress = "Address";
         public const string CellClickEmail = "Email";
@@ -28,7 +28,7 @@ namespace ACS_PACLAR.StringMessages
         public const string EmptyEmail = "Email is required. Please enter a valid email.";
 
         public const string ClientIDPlaceholder = "@ClientID";
-        public const string NamePlaceholder = "@Name";
+        public const string NamePlaceholder = "@ClientName";
         public const string ContactPlaceholder = "@ContactNumber";
         public const string AddressPlaceholder = "@Address";
         public const string EmailPlaceholder = "@Email";
@@ -48,7 +48,7 @@ namespace ACS_PACLAR.StringMessages
         public const string Error = "Error";
 
         //ServicesForm
-        public const string LoadServicesData = "SELECT ServiceID, Name, HourlyRate FROM dbo.Services";
+        public const string LoadServicesData = "SELECT ServiceID, ServiceName, HourlyRate FROM dbo.Services";
         public const string ServiceID = "ServiceID";
         public const string HourlyRate = "HourlyRate";
 

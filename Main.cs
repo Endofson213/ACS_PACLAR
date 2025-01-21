@@ -31,7 +31,6 @@ namespace ACS_PACLAR
             this.Hide();
 
         }
-
         private void servicesBtn_Click(object sender, EventArgs e)
         {
             ServicesForm servicesForm = new ServicesForm();

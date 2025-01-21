@@ -56,6 +56,12 @@ namespace ACS_PACLAR
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
+
+            string name = nameBox.Text.Trim();
+            string contactNumber = contactBox.Text.Trim();
+            string address = addressBox.Text.Trim();
+            string email = emailBox.Text.Trim();
+
             // Validate inputs
             if (string.IsNullOrWhiteSpace(nameBox.Text) ||
                 string.IsNullOrWhiteSpace(contactBox.Text) ||
@@ -74,12 +80,10 @@ namespace ACS_PACLAR
 
             if (confirmResult == DialogResult.No)
             {
-                // User chose not to proceed
                 return;
             }
             try
             {
-                // Update the client in the database
                 string query = ACSMessages.UpdateClientQuery;
 
                 using (SqlCommand command = new SqlCommand(query, connection))
