@@ -32,6 +32,8 @@
             label4 = new Label();
             button3 = new Button();
             button1 = new Button();
+            label1 = new Label();
+            bookingSearch = new TextBox();
             ((System.ComponentModel.ISupportInitialize)bookingsData).BeginInit();
             SuspendLayout();
             // 
@@ -84,11 +86,29 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += addBtn_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(266, 85);
+            label1.Name = "label1";
+            label1.Size = new Size(45, 15);
+            label1.TabIndex = 50;
+            label1.Text = "Search:";
+            // 
+            // bookingSearch
+            // 
+            bookingSearch.Location = new Point(317, 77);
+            bookingSearch.Name = "bookingSearch";
+            bookingSearch.Size = new Size(100, 23);
+            bookingSearch.TabIndex = 51;
+            // 
             // BookingsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(532, 368);
+            Controls.Add(bookingSearch);
+            Controls.Add(label1);
             Controls.Add(button1);
             Controls.Add(button3);
             Controls.Add(label4);
@@ -105,5 +125,7 @@
         private Label label4;
         private Button button3;
         private Button button1;
+        private Label label1;
+        private TextBox bookingSearch;
     }
 }

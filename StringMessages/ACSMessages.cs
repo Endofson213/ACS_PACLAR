@@ -52,5 +52,10 @@ namespace ACS_PACLAR.StringMessages
         public const string ServiceID = "ServiceID";
         public const string HourlyRate = "HourlyRate";
 
+
+        //BookingsForm
+        public const string BookingsID = "BookingsID";
+        public const string LoadBookingsData = "SELECT ClientName, BookingDate, TotalAmount, CreatedAt FROM dbo.Bookings";
+
     }
 }

@@ -35,20 +35,6 @@ namespace ACS_PACLAR
             LoadDataGrid();
             LoadEditDeleteBtn();
         }
-        private void OpenConnection()
-        {
-            if (connection.State == System.Data.ConnectionState.Closed)
-            {
-                connection.Open();
-            }
-        }
-        private void CloseConnection()
-        {
-            if (connection.State == System.Data.ConnectionState.Open)
-            {
-                connection.Close();
-            }
-        }
         private void LoadEditDeleteBtn()
         {
             DataGridViewButtonColumn editButtonColumn = new DataGridViewButtonColumn();
@@ -139,7 +125,7 @@ namespace ACS_PACLAR
         {
             try
             {
-                OpenConnection();
+                connection.Open();
 
                 string query = ACSMessages.DeleteClientQuery;
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -148,7 +134,7 @@ namespace ACS_PACLAR
                     command.ExecuteNonQuery();
                 }
 
-                CloseConnection();
+                connection.Close();
                 LoadDataGrid();
                 MessageBox.Show(ACSMessages.ClientDeletedSuccessfully, ACSMessages.Success, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -158,7 +144,7 @@ namespace ACS_PACLAR
             }
             finally
             {
-                CloseConnection();
+                connection.Close();
             }
         }
         private void backBtn_Click(object sender, EventArgs e)

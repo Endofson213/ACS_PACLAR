@@ -23,6 +23,7 @@ namespace ACS_PACLAR.BookingsForms
             string connectionString = ACSMessages.DBConnectionString;
             connection = new SqlConnection(connectionString);
 
+            //Event Handlers
             serviceGridView.CellValueChanged += serviceGrid_CellValueChanged;
             serviceGridView.RowsAdded += serviceGrid_RowsAddedOrRemoved;
             serviceGridView.RowsRemoved += serviceGrid_RowsAddedOrRemoved;
