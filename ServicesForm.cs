@@ -30,22 +30,6 @@ namespace ACS_PACLAR
             LoadDataGrid();
         }
 
-        private void LoadDataGrid()
-        {
-            connection.Open();
-            string query = ACSMessages.LoadServicesData;
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
-            DataTable dataTable = new DataTable();
-            dataAdapter.Fill(dataTable);
-            servicesData.DataSource = dataTable;
-            if (servicesData.Columns[ACSMessages.ServiceID] != null)
-            {
-                servicesData.Columns[ACSMessages.ServiceID].Visible = false;
-            }
-
-            servicesData.Columns[ACSMessages.HourlyRate].DefaultCellStyle.Format = "N2";
-        }
-
         private void OpenConnection()
         {
             if (connection.State == System.Data.ConnectionState.Closed)
@@ -60,6 +44,22 @@ namespace ACS_PACLAR
                 connection.Close();
             }
         }
+
+        private void LoadDataGrid()
+        {
+            OpenConnection();
+            string query = ACSMessages.LoadServicesData;
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
+            DataTable dataTable = new DataTable();
+            dataAdapter.Fill(dataTable);
+            servicesData.DataSource = dataTable;
+            if (servicesData.Columns[ACSMessages.ServiceID] != null)
+            {
+                servicesData.Columns[ACSMessages.ServiceID].Visible = false;
+            }
+
+            servicesData.Columns[ACSMessages.HourlyRate].DefaultCellStyle.Format = "N2";
+        }
         private void servicesData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -69,7 +69,7 @@ namespace ACS_PACLAR
                 DataGridViewRow selectedRow = servicesData.Rows[e.RowIndex];
 
                 nameBox.Text = selectedRow.Cells["ServiceName"].Value?.ToString();
-                hourlyrateBox.Text = selectedRow.Cells["hourlyrate"].Value?.ToString();
+                hourlyrateBox.Text = selectedRow.Cells["HourlyRate"].Value?.ToString();
             }
         }
         private void HourlyRateBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -164,7 +164,6 @@ namespace ACS_PACLAR
                 hourlyrateBox.Focus();
                 return;
             }
-
             try
             {
                 OpenConnection();

@@ -6,7 +6,6 @@ namespace ACS_PACLAR
         {
             InitializeComponent();
 
-
         }
         private void main_load(object sender, EventArgs e)
         {
@@ -35,10 +34,27 @@ namespace ACS_PACLAR
         {
             ServicesForm servicesForm = new ServicesForm();
 
-           servicesForm.Show();
+            servicesForm.Show();
 
             this.Hide();
 
+        }
+        private void inventoryBtn_Click(object sender, EventArgs e)
+        {
+            InventoryForm inventoryForm = new InventoryForm();
+
+            inventoryForm.Show();
+
+            this.Hide();
+        }
+
+        private void billingBtn_Click(object sender, EventArgs e)
+        {
+            BillingForm billingForm = new BillingForm();
+
+            billingForm.Show();
+
+            this.Hide();
         }
     }
 }

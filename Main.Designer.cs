@@ -31,15 +31,15 @@
             panel1 = new Panel();
             label1 = new Label();
             panel2 = new Panel();
-            button6 = new Button();
-            button5 = new Button();
+            billingBtn = new Button();
+            inventoryBtn = new Button();
             button4 = new Button();
             bookingsBtn = new Button();
             clientsBtn = new Button();
-            button7 = new Button();
-            button8 = new Button();
+            dataGridView1 = new DataGridView();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -62,10 +62,9 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(button8);
-            panel2.Controls.Add(button7);
-            panel2.Controls.Add(button6);
-            panel2.Controls.Add(button5);
+            panel2.Controls.Add(dataGridView1);
+            panel2.Controls.Add(billingBtn);
+            panel2.Controls.Add(inventoryBtn);
             panel2.Controls.Add(button4);
             panel2.Controls.Add(bookingsBtn);
             panel2.Controls.Add(clientsBtn);
@@ -74,29 +73,31 @@
             panel2.Size = new Size(716, 247);
             panel2.TabIndex = 12;
             // 
-            // button6
+            // billingBtn
             // 
-            button6.Location = new Point(3, 119);
-            button6.Name = "button6";
-            button6.Size = new Size(128, 23);
-            button6.TabIndex = 18;
-            button6.Text = "Process Payments";
-            button6.UseVisualStyleBackColor = true;
+            billingBtn.Location = new Point(0, 119);
+            billingBtn.Name = "billingBtn";
+            billingBtn.Size = new Size(92, 23);
+            billingBtn.TabIndex = 18;
+            billingBtn.Text = "Billing";
+            billingBtn.UseVisualStyleBackColor = true;
+            billingBtn.Click += billingBtn_Click;
             // 
-            // button5
+            // inventoryBtn
             // 
-            button5.Location = new Point(3, 90);
-            button5.Name = "button5";
-            button5.Size = new Size(128, 23);
-            button5.TabIndex = 17;
-            button5.Text = "Inventory Management";
-            button5.UseVisualStyleBackColor = true;
+            inventoryBtn.Location = new Point(0, 90);
+            inventoryBtn.Name = "inventoryBtn";
+            inventoryBtn.Size = new Size(92, 23);
+            inventoryBtn.TabIndex = 17;
+            inventoryBtn.Text = "Inventory Management";
+            inventoryBtn.UseVisualStyleBackColor = true;
+            inventoryBtn.Click += inventoryBtn_Click;
             // 
             // button4
             // 
-            button4.Location = new Point(3, 61);
+            button4.Location = new Point(0, 61);
             button4.Name = "button4";
-            button4.Size = new Size(128, 23);
+            button4.Size = new Size(92, 23);
             button4.TabIndex = 16;
             button4.Text = "Services";
             button4.UseVisualStyleBackColor = true;
@@ -104,9 +105,9 @@
             // 
             // bookingsBtn
             // 
-            bookingsBtn.Location = new Point(3, 32);
+            bookingsBtn.Location = new Point(0, 32);
             bookingsBtn.Name = "bookingsBtn";
-            bookingsBtn.Size = new Size(128, 23);
+            bookingsBtn.Size = new Size(92, 23);
             bookingsBtn.TabIndex = 15;
             bookingsBtn.Text = "Booking Transactions";
             bookingsBtn.UseVisualStyleBackColor = true;
@@ -114,31 +115,21 @@
             // 
             // clientsBtn
             // 
-            clientsBtn.Location = new Point(3, 3);
+            clientsBtn.Location = new Point(0, 3);
             clientsBtn.Name = "clientsBtn";
-            clientsBtn.Size = new Size(128, 23);
+            clientsBtn.Size = new Size(92, 23);
             clientsBtn.TabIndex = 14;
             clientsBtn.Text = "Client Profiles";
             clientsBtn.UseVisualStyleBackColor = true;
             clientsBtn.Click += clientsBtn_Click;
             // 
-            // button7
+            // dataGridView1
             // 
-            button7.Location = new Point(3, 148);
-            button7.Name = "button7";
-            button7.Size = new Size(128, 23);
-            button7.TabIndex = 19;
-            button7.Text = "Reports/View";
-            button7.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            button8.Location = new Point(3, 177);
-            button8.Name = "button8";
-            button8.Size = new Size(128, 23);
-            button8.TabIndex = 20;
-            button8.Text = "Weekly Schedule";
-            button8.UseVisualStyleBackColor = true;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(98, 3);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(608, 190);
+            dataGridView1.TabIndex = 19;
             // 
             // Main
             // 
@@ -153,6 +144,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -163,9 +155,8 @@
         private Button bookingsBtn;
         private Button clientsBtn;
         private Button button4;
-        private Button button5;
-        private Button button6;
-        private Button button8;
-        private Button button7;
+        private Button inventoryBtn;
+        private Button billingBtn;
+        private DataGridView dataGridView1;
     }
 }

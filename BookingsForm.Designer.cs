@@ -53,14 +53,14 @@
             bookingsData.ShowCellToolTips = false;
             bookingsData.ShowEditingIcon = false;
             bookingsData.ShowRowErrors = false;
-            bookingsData.Size = new Size(508, 245);
+            bookingsData.Size = new Size(703, 245);
             bookingsData.TabIndex = 24;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(171, 14);
+            label4.Location = new Point(273, 14);
             label4.Name = "label4";
             label4.Size = new Size(170, 21);
             label4.TabIndex = 39;
@@ -89,7 +89,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(266, 85);
+            label1.Location = new Point(564, 85);
             label1.Name = "label1";
             label1.Size = new Size(45, 15);
             label1.TabIndex = 50;
@@ -97,7 +97,7 @@
             // 
             // bookingSearch
             // 
-            bookingSearch.Location = new Point(317, 77);
+            bookingSearch.Location = new Point(615, 77);
             bookingSearch.Name = "bookingSearch";
             bookingSearch.Size = new Size(100, 23);
             bookingSearch.TabIndex = 51;
@@ -106,7 +106,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(532, 368);
+            ClientSize = new Size(727, 366);
             Controls.Add(bookingSearch);
             Controls.Add(label1);
             Controls.Add(button1);

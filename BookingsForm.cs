@@ -16,7 +16,6 @@ namespace ACS_PACLAR
 {
     public partial class BookingsForm : Form
     {
-
         private SqlConnection connection;
 
         public BookingsForm()
@@ -30,7 +29,9 @@ namespace ACS_PACLAR
             this.bookingsData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.bookingsData_CellClick);
             //Event Handler for clientSearch Box
             bookingSearch.TextChanged += bookingSearch_TextChanged;
+           
             LoadBookings();
+            LoadEditDeleteBtn();
         }
 
         private void LoadEditDeleteBtn()
@@ -57,28 +58,26 @@ namespace ACS_PACLAR
         {
             connection.Open();
 
-            string query = string.Format(ACSMessages.LoadBookingsData);
+            string query = ACSMessages.LoadBookingsData;
 
             if (!string.IsNullOrEmpty(searchText))
             {
-                query += $" WHERE ClientName LIKE '%{searchText}%' OR BookingDate LIKE '%{searchText}%' OR TotalAmount LIKE '%{searchText}%' OR CreatedAt LIKE '%{searchText}%'";
+                query += $" WHERE ClientName LIKE '%{searchText}%' OR BookingDate LIKE '%{searchText}%' OR TotalAmount LIKE '%{searchText}%' OR CreatedAt LIKE '%{searchText}%'  OR BookingReference LIKE '%{searchText}%'";
             }
 
             SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
 
-            // Assign filtered data to DataGridView
             bookingsData.DataSource = dataTable;
 
-            //hide ClientID
-            if (bookingsData.Columns[ACSMessages.BookingsID] != null)
+            if (bookingsData.Columns[ACSMessages.BookingID] != null)
             {
-                bookingsData.Columns[ACSMessages.BookingsID].Visible = false;
+                bookingsData.Columns[ACSMessages.BookingID].Visible = false;
             }
             connection.Close();
         }
-       
+
         private void bookingsData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -88,14 +87,12 @@ namespace ACS_PACLAR
                     // Retrieve the selected row's data
                     DataGridViewRow selectedRow = bookingsData.Rows[e.RowIndex];
 
-                    int clientId = Convert.ToInt32(selectedRow.Cells[ACSMessages.ClientID].Value);
+                    int bookingId = Convert.ToInt32(selectedRow.Cells[ACSMessages.BookingID].Value);
                     string? clientName = selectedRow.Cells[ACSMessages.CellClickClientName].Value?.ToString();
-                    string? contactNumber = selectedRow.Cells[ACSMessages.CellClickContactNumber].Value?.ToString();
-                    string? address = selectedRow.Cells[ACSMessages.CellClickAddress].Value?.ToString();
-                    string? email = selectedRow.Cells[ACSMessages.CellClickEmail].Value?.ToString();
+                    DateTime bookingDate = Convert.ToDateTime(selectedRow.Cells[ACSMessages.CellClickBookingDate].Value);
+                    decimal totalAmount = Convert.ToDecimal(selectedRow.Cells[ACSMessages.CellClickTotalAmount].Value);
 
-                    // Open the EditClientForm and pass the data
-                    EditClientForm editForm = new EditClientForm(clientId, clientName, contactNumber, address, email);
+                    EditBookingForm editForm = new EditBookingForm(bookingId, clientName, bookingDate, totalAmount, connection);
                     if (editForm.ShowDialog() == DialogResult.OK)
                     {
                         LoadBookings();
@@ -103,40 +100,81 @@ namespace ACS_PACLAR
                 }
                 else if (bookingsData.Columns[e.ColumnIndex].Name == ACSMessages.Delete)
                 {
-                    // Existing delete logic
-                    int clientId = Convert.ToInt32(bookingsData.Rows[e.RowIndex].Cells[ACSMessages.ClientID].Value);
-                    var confirmResult = MessageBox.Show(ACSMessages.DeleteConfirmation, ACSMessages.ConfirmDelete, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    // Get BookingID from the selected row
+                    int bookingId = Convert.ToInt32(bookingsData.Rows[e.RowIndex].Cells[ACSMessages.BookingID].Value);
+
+                    // Confirm deletion
+                    var confirmResult = MessageBox.Show(
+                        ACSMessages.DeleteBookingConfirmation,
+                        ACSMessages.ConfirmDelete,
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question
+                    );
+
                     if (confirmResult == DialogResult.Yes)
                     {
-                        DeleteClient(clientId);
+                        DeleteBooking(bookingId);
                     }
                 }
             }
         }
-        private void DeleteClient(int clientId)
+        private void DeleteBooking(int bookingId)
         {
             try
             {
+                DialogResult result = MessageBox.Show(
+                    "Are you sure you want to delete this booking? All associated services will also be deleted.",
+                    "Confirm Deletion",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (result != DialogResult.Yes)
+                {
+                    return;
+                }
+
                 connection.Open();
 
-                string query = ACSMessages.DeleteClientQuery;
-                using (SqlCommand command = new SqlCommand(query, connection))
+                string deleteServicesQuery = "DELETE FROM dbo.BookingServices WHERE BookingID = @BookingID";
+                using (SqlCommand deleteServicesCommand = new SqlCommand(deleteServicesQuery, connection))
                 {
-                    command.Parameters.AddWithValue(ACSMessages.ClientIDPlaceholder, clientId);
-                    command.ExecuteNonQuery();
+                    deleteServicesCommand.Parameters.AddWithValue("@BookingID", bookingId);
+                    deleteServicesCommand.ExecuteNonQuery();
+                }
+
+                string deleteBookingQuery = "DELETE FROM dbo.Bookings WHERE BookingID = @BookingID";
+                using (SqlCommand deleteBookingCommand = new SqlCommand(deleteBookingQuery, connection))
+                {
+                    deleteBookingCommand.Parameters.AddWithValue("@BookingID", bookingId);
+                    deleteBookingCommand.ExecuteNonQuery();
                 }
 
                 connection.Close();
                 LoadBookings();
-                MessageBox.Show(ACSMessages.ClientDeletedSuccessfully, ACSMessages.Success, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                MessageBox.Show(
+                    "The booking and its associated services have been successfully deleted.",
+                    "Success",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}", ACSMessages.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    $"An error occurred while deleting the booking: {ex.Message}",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
             finally
             {
-                connection.Close();
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
             }
         }
         private void backBtn(object sender, EventArgs e)

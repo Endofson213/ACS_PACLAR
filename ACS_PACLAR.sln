@@ -1,9 +1,71 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACS_PACLAR", "ACS_PACLAR.csproj", "{F40417AB-E896-4C3B-8779-5CFF918C6B3D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InventoryForms", "InventoryForms", "{7DE4421F-4869-4D6A-9BA9-E582026DBBC2}"
+	ProjectSection(SolutionItems) = preProject
+		EditInventoryForm.cs = EditInventoryForm.cs
+		EditInventoryForm.Designer.cs = EditInventoryForm.Designer.cs
+		EditInventoryForm.resx = EditInventoryForm.resx
+		InventoryForm.cs = InventoryForm.cs
+		InventoryForm.Designer.cs = InventoryForm.Designer.cs
+		InventoryForm.resx = InventoryForm.resx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BookingsForms", "BookingsForms", "{2BFBBC50-F73C-4428-9917-7A3433D81209}"
+	ProjectSection(SolutionItems) = preProject
+		AddBookingForm.cs = AddBookingForm.cs
+		AddBookingForm.Designer.cs = AddBookingForm.Designer.cs
+		AddBookingForm.resx = AddBookingForm.resx
+		BookingsForm.cs = BookingsForm.cs
+		BookingsForm.Designer.cs = BookingsForm.Designer.cs
+		BookingsForm.resx = BookingsForm.resx
+		EditBookingForm.cs = EditBookingForm.cs
+		EditBookingForm.Designer.cs = EditBookingForm.Designer.cs
+		BookingsForms\EditBookingForm.resx = BookingsForms\EditBookingForm.resx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServicesForm", "ServicesForm", "{C7C5D0A3-1C8F-4791-90DC-0739F3D91203}"
+	ProjectSection(SolutionItems) = preProject
+		ServicesForm\ServicesForm.cs = ServicesForm\ServicesForm.cs
+		ServicesForm\ServicesForm.Designer.cs = ServicesForm\ServicesForm.Designer.cs
+		ServicesForm\ServicesForm.resx = ServicesForm\ServicesForm.resx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BillingForms", "BillingForms", "{03149604-A232-4B65-9A15-4A3D133F1A6A}"
+	ProjectSection(SolutionItems) = preProject
+		BillingForm.cs = BillingForm.cs
+		BillingForm.Designer.cs = BillingForm.Designer.cs
+		BillingForm.resx = BillingForm.resx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientForms", "ClientForms", "{C7C7A267-5480-41F0-A1BC-98120439E69A}"
+	ProjectSection(SolutionItems) = preProject
+		AddClientForm.cs = AddClientForm.cs
+		AddClientForm.Designer.cs = AddClientForm.Designer.cs
+		AddClientForm.resx = AddClientForm.resx
+		ClientsForm.cs = ClientsForm.cs
+		ClientsForm.Designer.cs = ClientsForm.Designer.cs
+		ClientsForm.resx = ClientsForm.resx
+		EditClientForm.cs = EditClientForm.cs
+		EditClientForm.Designer.cs = EditClientForm.Designer.cs
+		EditClientForm.resx = EditClientForm.resx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ACSMessages", "ACSMessages", "{93722370-345A-4189-A4A6-A29C6054E1AB}"
+	ProjectSection(SolutionItems) = preProject
+		ACSMessages.cs = ACSMessages.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Main", "Main", "{D24F8D5F-40E5-4E4A-BC2E-DE028E8B8365}"
+	ProjectSection(SolutionItems) = preProject
+		Main.cs = Main.cs
+		Main.Designer.cs = Main.Designer.cs
+		Main.resx = Main.resx
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -113,7 +113,7 @@ namespace ACS_PACLAR
                 {
                     // Existing delete logic
                     int clientId = Convert.ToInt32(clientsData.Rows[e.RowIndex].Cells[ACSMessages.ClientID].Value);
-                    var confirmResult = MessageBox.Show(ACSMessages.DeleteConfirmation, ACSMessages.ConfirmDelete, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    var confirmResult = MessageBox.Show(ACSMessages.DeleteClientConfirmation, ACSMessages.ConfirmDelete, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (confirmResult == DialogResult.Yes)
                     {
                         DeleteClient(clientId);
