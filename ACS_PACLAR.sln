@@ -5,66 +5,44 @@ VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACS_PACLAR", "ACS_PACLAR.csproj", "{F40417AB-E896-4C3B-8779-5CFF918C6B3D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InventoryForms", "InventoryForms", "{7DE4421F-4869-4D6A-9BA9-E582026DBBC2}"
-	ProjectSection(SolutionItems) = preProject
-		EditInventoryForm.cs = EditInventoryForm.cs
-		EditInventoryForm.Designer.cs = EditInventoryForm.Designer.cs
-		EditInventoryForm.resx = EditInventoryForm.resx
-		InventoryForm.cs = InventoryForm.cs
-		InventoryForm.Designer.cs = InventoryForm.Designer.cs
-		InventoryForm.resx = InventoryForm.resx
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BookingsForms", "BookingsForms", "{2BFBBC50-F73C-4428-9917-7A3433D81209}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BookingForms", "BookingForms", "{AAF8F49A-62F9-4962-90CA-5C0DCD25377D}"
 	ProjectSection(SolutionItems) = preProject
 		AddBookingForm.cs = AddBookingForm.cs
-		AddBookingForm.Designer.cs = AddBookingForm.Designer.cs
-		AddBookingForm.resx = AddBookingForm.resx
 		BookingsForm.cs = BookingsForm.cs
-		BookingsForm.Designer.cs = BookingsForm.Designer.cs
-		BookingsForm.resx = BookingsForm.resx
 		EditBookingForm.cs = EditBookingForm.cs
-		EditBookingForm.Designer.cs = EditBookingForm.Designer.cs
-		BookingsForms\EditBookingForm.resx = BookingsForms\EditBookingForm.resx
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServicesForm", "ServicesForm", "{C7C5D0A3-1C8F-4791-90DC-0739F3D91203}"
-	ProjectSection(SolutionItems) = preProject
-		ServicesForm\ServicesForm.cs = ServicesForm\ServicesForm.cs
-		ServicesForm\ServicesForm.Designer.cs = ServicesForm\ServicesForm.Designer.cs
-		ServicesForm\ServicesForm.resx = ServicesForm\ServicesForm.resx
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BillingForms", "BillingForms", "{03149604-A232-4B65-9A15-4A3D133F1A6A}"
-	ProjectSection(SolutionItems) = preProject
-		BillingForm.cs = BillingForm.cs
-		BillingForm.Designer.cs = BillingForm.Designer.cs
-		BillingForm.resx = BillingForm.resx
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientForms", "ClientForms", "{C7C7A267-5480-41F0-A1BC-98120439E69A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientForms", "ClientForms", "{9D35BB9D-4F88-4CD3-9452-3BB3072EFDEC}"
 	ProjectSection(SolutionItems) = preProject
 		AddClientForm.cs = AddClientForm.cs
-		AddClientForm.Designer.cs = AddClientForm.Designer.cs
-		AddClientForm.resx = AddClientForm.resx
 		ClientsForm.cs = ClientsForm.cs
-		ClientsForm.Designer.cs = ClientsForm.Designer.cs
-		ClientsForm.resx = ClientsForm.resx
 		EditClientForm.cs = EditClientForm.cs
-		EditClientForm.Designer.cs = EditClientForm.Designer.cs
-		EditClientForm.resx = EditClientForm.resx
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ACSMessages", "ACSMessages", "{93722370-345A-4189-A4A6-A29C6054E1AB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InventoryForms", "InventoryForms", "{ED689BE6-321E-44B5-AA83-3A7B9BAC84F4}"
 	ProjectSection(SolutionItems) = preProject
-		ACSMessages.cs = ACSMessages.cs
+		EditInventoryForm.cs = EditInventoryForm.cs
+		InventoryForm.cs = InventoryForm.cs
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Main", "Main", "{D24F8D5F-40E5-4E4A-BC2E-DE028E8B8365}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Main", "Main", "{8CBD9131-6291-41DC-AFD0-468172D8E804}"
 	ProjectSection(SolutionItems) = preProject
 		Main.cs = Main.cs
-		Main.Designer.cs = Main.Designer.cs
-		Main.resx = Main.resx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BillingForms", "BillingForms", "{FFBDD416-9676-43DE-9D6C-1DE63B04EEB3}"
+	ProjectSection(SolutionItems) = preProject
+		BillingForm.cs = BillingForm.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StringMessages", "StringMessages", "{5644F9E2-0DB2-41D3-85D3-E76B0EA8CF56}"
+	ProjectSection(SolutionItems) = preProject
+		StringMessages\ACSMessages.cs = StringMessages\ACSMessages.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServicesForm", "ServicesForm", "{B57D0A11-0320-4FFB-BF8B-9275D36ECAC5}"
+	ProjectSection(SolutionItems) = preProject
+		ServicesForm.cs = ServicesForm.cs
 	EndProjectSection
 EndProject
 Global

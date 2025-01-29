@@ -32,6 +32,7 @@
             label1 = new Label();
             backBtn = new Button();
             billingData = new DataGridView();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)billingData).BeginInit();
             SuspendLayout();
             // 
@@ -67,6 +68,7 @@
             billingData.AllowUserToDeleteRows = false;
             billingData.AllowUserToResizeColumns = false;
             billingData.AllowUserToResizeRows = false;
+            billingData.BackgroundColor = SystemColors.GradientActiveCaption;
             billingData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             billingData.EditMode = DataGridViewEditMode.EditProgrammatically;
             billingData.Location = new Point(6, 97);
@@ -74,18 +76,32 @@
             billingData.Name = "billingData";
             billingData.ReadOnly = true;
             billingData.RowHeadersVisible = false;
+            billingData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             billingData.ShowCellErrors = false;
             billingData.ShowCellToolTips = false;
             billingData.ShowEditingIcon = false;
             billingData.ShowRowErrors = false;
-            billingData.Size = new Size(720, 242);
+            billingData.Size = new Size(759, 242);
             billingData.TabIndex = 26;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label6.Location = new Point(323, 14);
+            label6.Name = "label6";
+            label6.Size = new Size(103, 21);
+            label6.TabIndex = 27;
+            label6.Text = "Billing Form";
+            label6.TextAlign = ContentAlignment.TopCenter;
             // 
             // BillingForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(738, 341);
+            BackColor = SystemColors.ActiveCaption;
+            ClientSize = new Size(769, 341);
+            Controls.Add(label6);
             Controls.Add(billingData);
             Controls.Add(backBtn);
             Controls.Add(label1);
@@ -102,5 +118,6 @@
         private Label label1;
         private Button backBtn;
         private DataGridView billingData;
+        private Label label6;
     }
 }

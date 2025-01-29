@@ -142,6 +142,7 @@
             bookingSummaryGrid.AllowUserToDeleteRows = false;
             bookingSummaryGrid.AllowUserToResizeColumns = false;
             bookingSummaryGrid.AllowUserToResizeRows = false;
+            bookingSummaryGrid.BackgroundColor = SystemColors.GradientActiveCaption;
             bookingSummaryGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             bookingSummaryGrid.EnableHeadersVisualStyles = false;
             bookingSummaryGrid.Location = new Point(58, 217);
@@ -195,6 +196,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(510, 517);
             Controls.Add(totalAmountBox);
             Controls.Add(clientNameBox);

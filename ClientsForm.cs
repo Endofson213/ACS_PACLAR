@@ -31,6 +31,7 @@ namespace ACS_PACLAR
             this.clientsData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.clientsData_CellClick);
             //Event Handler for clientSearch Box
             clientSearch.TextChanged += clientSearch_TextChanged;
+            clientsData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             LoadDataGrid();
             LoadEditDeleteBtn();
@@ -58,7 +59,6 @@ namespace ACS_PACLAR
             {
                 query += $" WHERE ClientName LIKE '%{searchText}%' OR ContactNumber LIKE '%{searchText}%' OR Email LIKE '%{searchText}%' OR Address LIKE '%{searchText}%'";
             }
-
             SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);

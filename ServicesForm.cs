@@ -21,7 +21,6 @@ namespace ACS_PACLAR
 
             string connectionString = ACSMessages.DBConnectionString;
             connection = new SqlConnection(connectionString);
-
             //only numbers
             hourlyrateBox.KeyPress += HourlyRateBox_KeyPress;
 
@@ -44,7 +43,6 @@ namespace ACS_PACLAR
                 connection.Close();
             }
         }
-
         private void LoadDataGrid()
         {
             OpenConnection();
@@ -58,7 +56,7 @@ namespace ACS_PACLAR
                 servicesData.Columns[ACSMessages.ServiceID].Visible = false;
             }
 
-            servicesData.Columns[ACSMessages.HourlyRate].DefaultCellStyle.Format = "N2";
+            servicesData.Columns[ACSMessages.HourlyRate].DefaultCellStyle.Format = ACSMessages.HourlyRateFormat;
         }
         private void servicesData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -68,8 +66,8 @@ namespace ACS_PACLAR
 
                 DataGridViewRow selectedRow = servicesData.Rows[e.RowIndex];
 
-                nameBox.Text = selectedRow.Cells["ServiceName"].Value?.ToString();
-                hourlyrateBox.Text = selectedRow.Cells["HourlyRate"].Value?.ToString();
+                nameBox.Text = selectedRow.Cells[ACSMessages.ServiceName].Value?.ToString();
+                hourlyrateBox.Text = selectedRow.Cells[ACSMessages.HourlyRate].Value?.ToString();
             }
         }
         private void HourlyRateBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -99,14 +97,14 @@ namespace ACS_PACLAR
 
             if (string.IsNullOrEmpty(name))
             {
-                MessageBox.Show("Service name is required.");
+                MessageBox.Show(ACSMessages.RequiredServiceName);
                 nameBox.Focus();
                 return;
             }
 
             if (!decimal.TryParse(hourlyRateText, out decimal hourlyRate))
             {
-                MessageBox.Show("Invalid hourly rate. Please enter a valid number.");
+                MessageBox.Show(ACSMessages.InvalidHourlyRate);
                 hourlyrateBox.Focus();
                 return;
             }
@@ -115,19 +113,19 @@ namespace ACS_PACLAR
             {
                 OpenConnection();
 
-                string query = "INSERT INTO dbo.Services (ServiceName, HourlyRate) VALUES (@ServiceName, @HourlyRate)";
+                string query = ACSMessages.AddServiceQuery;
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@ServiceName", name);
-                    command.Parameters.AddWithValue("@HourlyRate", hourlyRate);
+                    command.Parameters.AddWithValue(ACSMessages.ServiceNamePlaceholder, name);
+                    command.Parameters.AddWithValue(ACSMessages.HourlyRatePlaceholder, hourlyRate);
 
                     command.ExecuteNonQuery();
                 }
 
                 CloseConnection();
 
-                MessageBox.Show("Service added successfully!");
+                MessageBox.Show(ACSMessages.ServiceAddedSuccessfully);
 
                 nameBox.Clear();
                 hourlyrateBox.Clear();
@@ -143,24 +141,24 @@ namespace ACS_PACLAR
         {
             if (servicesData.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Please select a service to edit.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ACSMessages.NoServiceSelected, ACSMessages.NoSelection, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            int serviceId = Convert.ToInt32(servicesData.SelectedRows[0].Cells["ServiceID"].Value);
+            int serviceId = Convert.ToInt32(servicesData.SelectedRows[0].Cells[ACSMessages.ServiceID].Value);
             string name = nameBox.Text.Trim();
             string hourlyRateText = hourlyrateBox.Text.Trim();
 
             if (string.IsNullOrEmpty(name))
             {
-                MessageBox.Show("Service name is required.");
+                MessageBox.Show(ACSMessages.NoServiceName);
                 nameBox.Focus();
                 return;
             }
 
             if (!decimal.TryParse(hourlyRateText, out decimal hourlyRate))
             {
-                MessageBox.Show("Invalid hourly rate. Please enter a valid number.");
+                MessageBox.Show(ACSMessages.InvalidHourlyRate);
                 hourlyrateBox.Focus();
                 return;
             }
@@ -168,26 +166,26 @@ namespace ACS_PACLAR
             {
                 OpenConnection();
 
-                string query = "UPDATE dbo.Services SET ServiceName = @ServiceName, HourlyRate = @HourlyRate WHERE ServiceID = @ServiceID";
+                string query = ACSMessages.UpdateServiceQuery;
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@ServiceName", name);
-                    command.Parameters.AddWithValue("@HourlyRate", hourlyRate);
-                    command.Parameters.AddWithValue("@ServiceID", serviceId);
+                    command.Parameters.AddWithValue(ACSMessages.ServiceNamePlaceholder, name);
+                    command.Parameters.AddWithValue(ACSMessages.HourlyRatePlaceholder, hourlyRate);
+                    command.Parameters.AddWithValue(ACSMessages.ServiceIDPlaceholder, serviceId);
 
                     command.ExecuteNonQuery();
                 }
 
                 CloseConnection();
 
-                MessageBox.Show("Service updated successfully!");
+                MessageBox.Show(ACSMessages.ServiceUpdatedSuccessfully);
 
                 LoadDataGrid();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occurred: {ex.Message}", ACSMessages.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -198,23 +196,23 @@ namespace ACS_PACLAR
             {
                 if (servicesData.SelectedRows.Count == 0)
                 {
-                    MessageBox.Show("Please select a Service to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(ACSMessages.NoServiceToDelete, ACSMessages.NoSelection, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                int serviceId = Convert.ToInt32(servicesData.SelectedRows[0].Cells["ServiceID"].Value);
+                int serviceId = Convert.ToInt32(servicesData.SelectedRows[0].Cells[ACSMessages.ServiceID].Value);
 
-                var confirmResult = MessageBox.Show("Are you sure you want to delete this Service?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var confirmResult = MessageBox.Show(ACSMessages.DeleteServiceConfirmation, ACSMessages.ConfirmDelete, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (confirmResult == DialogResult.Yes)
                 {
                     OpenConnection();
 
-                    string query = "DELETE FROM dbo.Services WHERE ServiceID = @ServiceID";
+                    string query = ACSMessages.DeleteServiceQuery;
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@ServiceID", serviceId);
+                        command.Parameters.AddWithValue(ACSMessages.ServiceIDPlaceholder, serviceId);
                         command.ExecuteNonQuery();
                     }
 
@@ -224,23 +222,20 @@ namespace ACS_PACLAR
                     hourlyrateBox.Clear();
                     LoadDataGrid();
 
-                    MessageBox.Show("Service deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(ACSMessages.ServiceDeletedSuccessfully, ACSMessages.Success, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occurred: {ex.Message}", ACSMessages.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void backBtn_Click(object sender, EventArgs e)
         {
             Main MainForm = new Main();
             MainForm.Show();
             this.Hide();
-
         }
-
         private void clearBtn_Click(object sender, EventArgs e)
         {
             nameBox.Clear();

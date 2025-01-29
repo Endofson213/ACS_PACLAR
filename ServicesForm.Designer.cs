@@ -38,6 +38,7 @@
             label1 = new Label();
             servicesData = new DataGridView();
             button1 = new Button();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)servicesData).BeginInit();
             SuspendLayout();
             // 
@@ -119,12 +120,14 @@
             servicesData.AllowUserToDeleteRows = false;
             servicesData.AllowUserToResizeColumns = false;
             servicesData.AllowUserToResizeRows = false;
+            servicesData.BackgroundColor = SystemColors.GradientActiveCaption;
             servicesData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             servicesData.Location = new Point(285, 50);
             servicesData.MultiSelect = false;
             servicesData.Name = "servicesData";
             servicesData.ReadOnly = true;
             servicesData.RowHeadersVisible = false;
+            servicesData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             servicesData.ShowCellErrors = false;
             servicesData.ShowCellToolTips = false;
             servicesData.ShowEditingIcon = false;
@@ -142,11 +145,24 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += backBtn_Click;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label6.Location = new Point(244, 9);
+            label6.Name = "label6";
+            label6.Size = new Size(116, 21);
+            label6.TabIndex = 40;
+            label6.Text = "Services Form";
+            label6.TextAlign = ContentAlignment.TopCenter;
+            // 
             // ServicesForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(595, 280);
+            Controls.Add(label6);
             Controls.Add(button1);
             Controls.Add(button2);
             Controls.Add(deleteBtn);
@@ -176,5 +192,6 @@
         private Label label1;
         private DataGridView servicesData;
         private Button button1;
+        private Label label6;
     }
 }

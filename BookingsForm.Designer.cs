@@ -43,12 +43,14 @@
             bookingsData.AllowUserToDeleteRows = false;
             bookingsData.AllowUserToResizeColumns = false;
             bookingsData.AllowUserToResizeRows = false;
+            bookingsData.BackgroundColor = SystemColors.GradientActiveCaption;
             bookingsData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             bookingsData.Location = new Point(12, 106);
             bookingsData.MultiSelect = false;
             bookingsData.Name = "bookingsData";
             bookingsData.ReadOnly = true;
             bookingsData.RowHeadersVisible = false;
+            bookingsData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             bookingsData.ShowCellErrors = false;
             bookingsData.ShowCellToolTips = false;
             bookingsData.ShowEditingIcon = false;
@@ -106,6 +108,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(727, 366);
             Controls.Add(bookingSearch);
             Controls.Add(label1);

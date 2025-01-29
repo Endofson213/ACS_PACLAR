@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace ACS_PACLAR.StringMessages
 {
@@ -17,6 +18,7 @@ namespace ACS_PACLAR.StringMessages
         public const string DeleteClientQuery = "DELETE FROM dbo.ClientsProfile WHERE ClientID = @ClientID";
 
         public const string ClientID = "ClientID";
+        public const string ClientName = "ClientName";
         public const string CellClickClientName = "ClientName";
         public const string CellClickContactNumber = "ContactNumber";
         public const string CellClickAddress = "Address";
@@ -48,13 +50,31 @@ namespace ACS_PACLAR.StringMessages
         public const string Error = "Error";
 
         //ServicesForm
+        public const string AddServiceQuery = "INSERT INTO dbo.Services (ServiceName, HourlyRate) VALUES (@ServiceName, @HourlyRate)";
+        public const string UpdateServiceQuery = "UPDATE dbo.Services SET ServiceName = @ServiceName, HourlyRate = @HourlyRate WHERE ServiceID = @ServiceID";
+        public const string DeleteServiceQuery = "DELETE FROM dbo.Services WHERE ServiceID = @ServiceID";
         public const string LoadServicesData = "SELECT ServiceID, ServiceName, HourlyRate FROM dbo.Services;";
         public const string ServiceID = "ServiceID";
         public const string HourlyRate = "HourlyRate";
+        public const string HourlyRateFormat = "N2";
+        public const string ServiceName = "ServiceName";
+        public const string RequiredServiceName = "Service name is required.";
+        public const string InvalidHourlyRate = "Invalid hourly rate. Please enter a valid number.";
+        public const string ServiceNamePlaceholder = "@ServiceName";
+        public const string HourlyRatePlaceholder = "@HourlyRate";
+        public const string ServiceIDPlaceholder = "@ServiceID";
+        public const string ServiceAddedSuccessfully = "Service added successfully!";
+        public const string ServiceUpdatedSuccessfully = "Service updated successfully!";
+        public const string ServiceDeletedSuccessfully = "Service Deleted successfully!";
+        public const string NoServiceSelected = "Please select a service to edit.";
+        public const string NoServiceName = "Service name is required.";
+        public const string NoServiceToDelete = "Please select a Service to delete.";
+        public const string DeleteServiceConfirmation = "Are you sure you want to delete this Service?";
+
 
         //BookingsForm
         public const string BookingID = "BookingID";
-        public const string LoadBookingsData = "SELECT BookingID, ClientName, BookingDate, BookingReference, TotalAmount, CreatedAt FROM dbo.Bookings";
+        public const string LoadBookingsData = "SELECT BookingReference, BookingID, ClientName, BookingDate, TotalAmount FROM dbo.Bookings";
         public const string LoadClientsData = "SELECT ClientID, ClientName FROM ClientsProfile";
         public const string LoadBookingSummary = "SELECT ServiceID, ClientName FROM ClientsProfile";
         public const string CellClickBookingDate = "BookingDate";

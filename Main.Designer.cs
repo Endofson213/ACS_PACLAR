@@ -31,15 +31,15 @@
             panel1 = new Panel();
             label1 = new Label();
             panel2 = new Panel();
+            mainData = new DataGridView();
             billingBtn = new Button();
             inventoryBtn = new Button();
             button4 = new Button();
             bookingsBtn = new Button();
             clientsBtn = new Button();
-            dataGridView1 = new DataGridView();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)mainData).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -62,7 +62,7 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(dataGridView1);
+            panel2.Controls.Add(mainData);
             panel2.Controls.Add(billingBtn);
             panel2.Controls.Add(inventoryBtn);
             panel2.Controls.Add(button4);
@@ -73,9 +73,34 @@
             panel2.Size = new Size(716, 247);
             panel2.TabIndex = 12;
             // 
+            // mainData
+            // 
+            mainData.AllowUserToAddRows = false;
+            mainData.AllowUserToDeleteRows = false;
+            mainData.AllowUserToResizeColumns = false;
+            mainData.AllowUserToResizeRows = false;
+            mainData.BackgroundColor = SystemColors.GradientActiveCaption;
+            mainData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            mainData.EnableHeadersVisualStyles = false;
+            mainData.Location = new Point(3, 8);
+            mainData.MultiSelect = false;
+            mainData.Name = "mainData";
+            mainData.ReadOnly = true;
+            mainData.RowHeadersVisible = false;
+            mainData.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            mainData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            mainData.ShowCellErrors = false;
+            mainData.ShowCellToolTips = false;
+            mainData.ShowEditingIcon = false;
+            mainData.ShowRowErrors = false;
+            mainData.Size = new Size(608, 236);
+            mainData.StandardTab = true;
+            mainData.TabIndex = 19;
+            mainData.TabStop = false;
+            // 
             // billingBtn
             // 
-            billingBtn.Location = new Point(0, 119);
+            billingBtn.Location = new Point(617, 124);
             billingBtn.Name = "billingBtn";
             billingBtn.Size = new Size(92, 23);
             billingBtn.TabIndex = 18;
@@ -85,7 +110,7 @@
             // 
             // inventoryBtn
             // 
-            inventoryBtn.Location = new Point(0, 90);
+            inventoryBtn.Location = new Point(617, 95);
             inventoryBtn.Name = "inventoryBtn";
             inventoryBtn.Size = new Size(92, 23);
             inventoryBtn.TabIndex = 17;
@@ -95,7 +120,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(0, 61);
+            button4.Location = new Point(617, 66);
             button4.Name = "button4";
             button4.Size = new Size(92, 23);
             button4.TabIndex = 16;
@@ -105,7 +130,7 @@
             // 
             // bookingsBtn
             // 
-            bookingsBtn.Location = new Point(0, 32);
+            bookingsBtn.Location = new Point(617, 37);
             bookingsBtn.Name = "bookingsBtn";
             bookingsBtn.Size = new Size(92, 23);
             bookingsBtn.TabIndex = 15;
@@ -115,7 +140,7 @@
             // 
             // clientsBtn
             // 
-            clientsBtn.Location = new Point(0, 3);
+            clientsBtn.Location = new Point(617, 8);
             clientsBtn.Name = "clientsBtn";
             clientsBtn.Size = new Size(92, 23);
             clientsBtn.TabIndex = 14;
@@ -123,18 +148,11 @@
             clientsBtn.UseVisualStyleBackColor = true;
             clientsBtn.Click += clientsBtn_Click;
             // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(98, 3);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(608, 190);
-            dataGridView1.TabIndex = 19;
-            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(740, 352);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -144,7 +162,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)mainData).EndInit();
             ResumeLayout(false);
         }
 
@@ -157,6 +175,6 @@
         private Button button4;
         private Button inventoryBtn;
         private Button billingBtn;
-        private DataGridView dataGridView1;
+        private DataGridView mainData;
     }
 }

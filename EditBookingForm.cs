@@ -279,7 +279,7 @@ namespace ACS_PACLAR.BookingsForms
                             command.Parameters.AddWithValue("@HourlyRate", Convert.ToDecimal(row.Cells["HourlyRate"].Value)); // Hourly rate
                             command.Parameters.AddWithValue("@Subtotal", Convert.ToDecimal(row.Cells["Subtotal"].Value)); // Subtotal
 
-                            command.ExecuteNonQuery(); 
+                            command.ExecuteNonQuery();
                         }
                     }
                 }
@@ -308,7 +308,7 @@ namespace ACS_PACLAR.BookingsForms
                     object result = command.ExecuteScalar();
                     return result != null ? Convert.ToDecimal(result) : 0;
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -399,20 +399,19 @@ namespace ACS_PACLAR.BookingsForms
 
                 // Update the main booking details
                 string updateBookingQuery = @"
-            UPDATE dbo.Bookings
-            SET BookingDate = @BookingDate, TotalAmount = @TotalAmount
-            WHERE BookingID = @BookingID;";
+        UPDATE dbo.Bookings
+        SET BookingDate = @BookingDate, TotalAmount = @TotalAmount
+        WHERE BookingID = @BookingID;";
 
                 using (SqlCommand command = new SqlCommand(updateBookingQuery, connection))
                 {
-
                     command.Parameters.AddWithValue("@BookingID", bookingId);
-                    command.Parameters.AddWithValue("@BookingDate", datePicker.Value.Date);
+                    command.Parameters.AddWithValue("@BookingDate", datePicker.Value);
                     command.Parameters.AddWithValue("@TotalAmount", totalAmount);
 
                     command.ExecuteNonQuery();
                 }
-                
+
                 // Save the associated services
                 SaveBookingServices();
             }
@@ -426,7 +425,6 @@ namespace ACS_PACLAR.BookingsForms
                 MessageBox.Show("Booking updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
                 Close();
-                
             }
         }
     }

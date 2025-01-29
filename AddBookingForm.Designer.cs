@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             addBookingBtn = new Button();
             datePicker = new DateTimePicker();
             label3 = new Label();
@@ -110,6 +114,17 @@
             clientListView.AllowUserToDeleteRows = false;
             clientListView.AllowUserToResizeColumns = false;
             clientListView.AllowUserToResizeRows = false;
+            clientListView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            clientListView.BackgroundColor = SystemColors.GradientActiveCaption;
+            clientListView.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            clientListView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             clientListView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             clientListView.ColumnHeadersVisible = false;
             clientListView.EnableHeadersVisualStyles = false;
@@ -117,6 +132,14 @@
             clientListView.MultiSelect = false;
             clientListView.Name = "clientListView";
             clientListView.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Arial", 14F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            clientListView.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             clientListView.RowHeadersVisible = false;
             clientListView.ShowCellErrors = false;
             clientListView.ShowCellToolTips = false;
@@ -181,7 +204,25 @@
             bookingSummaryGrid.AllowUserToDeleteRows = false;
             bookingSummaryGrid.AllowUserToResizeColumns = false;
             bookingSummaryGrid.AllowUserToResizeRows = false;
+            bookingSummaryGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            bookingSummaryGrid.BackgroundColor = SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            bookingSummaryGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             bookingSummaryGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            bookingSummaryGrid.DefaultCellStyle = dataGridViewCellStyle4;
             bookingSummaryGrid.EnableHeadersVisualStyles = false;
             bookingSummaryGrid.Location = new Point(63, 336);
             bookingSummaryGrid.MultiSelect = false;
@@ -218,6 +259,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(510, 640);
             Controls.Add(hourlyRateLabel);
             Controls.Add(addServiceBtn);

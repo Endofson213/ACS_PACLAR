@@ -43,6 +43,7 @@
             clientsData.AllowUserToDeleteRows = false;
             clientsData.AllowUserToResizeColumns = false;
             clientsData.AllowUserToResizeRows = false;
+            clientsData.BackgroundColor = SystemColors.GradientActiveCaption;
             clientsData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             clientsData.EditMode = DataGridViewEditMode.EditProgrammatically;
             clientsData.Location = new Point(12, 85);
@@ -50,6 +51,7 @@
             clientsData.Name = "clientsData";
             clientsData.ReadOnly = true;
             clientsData.RowHeadersVisible = false;
+            clientsData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             clientsData.ShowCellErrors = false;
             clientsData.ShowCellToolTips = false;
             clientsData.ShowEditingIcon = false;
@@ -100,9 +102,9 @@
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(258, 12);
             label1.Name = "label1";
-            label1.Size = new Size(117, 21);
+            label1.Size = new Size(105, 21);
             label1.TabIndex = 27;
-            label1.Text = "Client Profiles";
+            label1.Text = "Clients Form";
             // 
             // ClientsForm
             // 
@@ -110,6 +112,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(637, 285);
             Controls.Add(label1);
             Controls.Add(label5);

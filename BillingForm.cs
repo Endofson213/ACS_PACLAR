@@ -15,7 +15,6 @@ namespace ACS_PACLAR
     public partial class BillingForm : Form
     {
         private string connectionString = ACSMessages.DBConnectionString;
-        private SqlConnection connection;
 
         public BillingForm()
         {
@@ -23,6 +22,7 @@ namespace ACS_PACLAR
 
             billingSearch.TextChanged += inventorySearch_TextChanged;
             billingData.CellContentClick += BillingData_CellContentClick;
+            billingData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             LoadBillingData();
             LoadPaidBtn();
@@ -33,34 +33,22 @@ namespace ACS_PACLAR
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 string columnName = billingData.Columns[e.ColumnIndex].Name;
-
-                // Get the BillingID from the current row
                 string billingID = billingData.Rows[e.RowIndex].Cells[ACSMessages.BillingID]?.Value?.ToString();
                 string currentStatus = billingData.Rows[e.RowIndex].Cells["PaymentStatus"]?.Value?.ToString();
 
-                if (!string.IsNullOrEmpty(billingID))
+                if (!string.IsNullOrEmpty(billingID) && columnName == ACSMessages.Paid)
                 {
-                    if (columnName == ACSMessages.Paid)
+                    if (currentStatus == "Paid")
                     {
-                        if (currentStatus == "Paid")
-                        {
-                            MessageBox.Show("This client is already marked as paid. Action not allowed.",
-                                            "Information",
-                                            MessageBoxButtons.OK,
-                                            MessageBoxIcon.Information);
-                            return;
-                        }
+                        MessageBox.Show("This client is already marked as paid.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
 
-                        // Show confirmation prompt
-                        DialogResult dialogResult = MessageBox.Show("Are you sure you want to mark this client as paid?",
-                                                                    "Confirm Payment",
-                                                                    MessageBoxButtons.YesNo,
-                                                                    MessageBoxIcon.Question);
+                    DialogResult dialogResult = MessageBox.Show("Mark this client as paid?", "Confirm Payment", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                        if (dialogResult == DialogResult.Yes)
-                        {
-                            UpdatePaymentStatus(billingID, "Paid");
-                        }
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        UpdatePaymentStatus(billingID, "Paid");
                     }
                 }
             }
@@ -75,29 +63,20 @@ namespace ACS_PACLAR
                     string query = "UPDATE dbo.Billing SET PaymentStatus = @PaymentStatus, PaymentDate = @PaymentDate WHERE BillingID = @BillingID";
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@PaymentStatus", newStatus);
-                    command.Parameters.AddWithValue("@PaymentDate", DateTime.Now); // Set the current date and time
+                    command.Parameters.AddWithValue("@PaymentDate", DateTime.Now);
                     command.Parameters.AddWithValue("@BillingID", billingID);
 
                     connection.Open();
                     command.ExecuteNonQuery();
-                    connection.Close();
                 }
 
-                // Reload data to reflect changes
                 LoadBillingData();
 
-                // Show confirmation of the action
-                MessageBox.Show($"Payment status successfully updated to '{newStatus}'.",
-                                "Success",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
+                MessageBox.Show($"Payment status updated to '{newStatus}'.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error updating payment status: {ex.Message}",
-                                "Error",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+                MessageBox.Show($"Error updating payment status: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -125,14 +104,14 @@ namespace ACS_PACLAR
         {
             try
             {
-                string query = "SELECT * FROM dbo.Billing";
+                string query = "SELECT BillingID, BillingReference, ClientName, TotalAmount, PaymentStatus, BillingDate, PaymentDate FROM dbo.Billing";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
                     if (!string.IsNullOrEmpty(searchText))
                     {
-                        query += $" WHERE BookingReference LIKE '%{searchText}%' OR ClientName LIKE '%{searchText}%' OR TotalAmount LIKE '%{searchText}%' OR PaymentStatus LIKE '%{searchText}%' OR BillingDate LIKE '%{searchText}%' OR PaymentDate LIKE '%{searchText}%'";
+                        query += $" WHERE ClientName LIKE '%{searchText}%' OR TotalAmount LIKE '%{searchText}%' OR PaymentStatus LIKE '%{searchText}%' OR BillingDate LIKE '%{searchText}%'";
                     }
                     using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
                     {
@@ -149,10 +128,7 @@ namespace ACS_PACLAR
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading billing data: {ex.Message}",
-                                "Error",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+                MessageBox.Show($"Error loading billing data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

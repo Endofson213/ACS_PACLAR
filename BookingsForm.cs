@@ -29,7 +29,8 @@ namespace ACS_PACLAR
             this.bookingsData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.bookingsData_CellClick);
             //Event Handler for clientSearch Box
             bookingSearch.TextChanged += bookingSearch_TextChanged;
-           
+            bookingsData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
             LoadBookings();
             LoadEditDeleteBtn();
         }
@@ -62,7 +63,7 @@ namespace ACS_PACLAR
 
             if (!string.IsNullOrEmpty(searchText))
             {
-                query += $" WHERE ClientName LIKE '%{searchText}%' OR BookingDate LIKE '%{searchText}%' OR TotalAmount LIKE '%{searchText}%' OR CreatedAt LIKE '%{searchText}%'  OR BookingReference LIKE '%{searchText}%'";
+                query += $" WHERE ClientName LIKE '%{searchText}%' OR BookingDate LIKE '%{searchText}%' OR TotalAmount LIKE '%{searchText}%' OR BookingReference LIKE '%{searchText}%'";
             }
 
             SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
@@ -75,7 +76,12 @@ namespace ACS_PACLAR
             {
                 bookingsData.Columns[ACSMessages.BookingID].Visible = false;
             }
-            connection.Close();
+
+            if (bookingsData.Columns[ACSMessages.CellClickTotalAmount] != null)
+            {
+                bookingsData.Columns[ACSMessages.CellClickTotalAmount].DefaultCellStyle.Format = "C2";
+                connection.Close();
+            }
         }
 
         private void bookingsData_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -84,7 +90,6 @@ namespace ACS_PACLAR
             {
                 if (bookingsData.Columns[e.ColumnIndex].Name == ACSMessages.Edit)
                 {
-                    // Retrieve the selected row's data
                     DataGridViewRow selectedRow = bookingsData.Rows[e.RowIndex];
 
                     int bookingId = Convert.ToInt32(selectedRow.Cells[ACSMessages.BookingID].Value);
@@ -100,10 +105,8 @@ namespace ACS_PACLAR
                 }
                 else if (bookingsData.Columns[e.ColumnIndex].Name == ACSMessages.Delete)
                 {
-                    // Get BookingID from the selected row
                     int bookingId = Convert.ToInt32(bookingsData.Rows[e.RowIndex].Cells[ACSMessages.BookingID].Value);
 
-                    // Confirm deletion
                     var confirmResult = MessageBox.Show(
                         ACSMessages.DeleteBookingConfirmation,
                         ACSMessages.ConfirmDelete,

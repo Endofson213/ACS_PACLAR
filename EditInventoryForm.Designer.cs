@@ -35,6 +35,7 @@
             nameBox = new TextBox();
             label3 = new Label();
             label1 = new Label();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)quantityBox).BeginInit();
             SuspendLayout();
             // 
@@ -98,11 +99,24 @@
             label1.TabIndex = 43;
             label1.Text = "Name:";
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label6.Location = new Point(139, 9);
+            label6.Name = "label6";
+            label6.Size = new Size(119, 21);
+            label6.TabIndex = 50;
+            label6.Text = "Edit Inventory";
+            label6.TextAlign = ContentAlignment.TopCenter;
+            // 
             // EditInventoryForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(373, 207);
+            Controls.Add(label6);
             Controls.Add(serviceBox);
             Controls.Add(quantityBox);
             Controls.Add(label2);
@@ -126,5 +140,6 @@
         private TextBox nameBox;
         private Label label3;
         private Label label1;
+        private Label label6;
     }
 }

@@ -43,13 +43,11 @@ namespace ACS_PACLAR.BookingsForms
             LoadBookingSummaryGrid();
 
         }
-
         private void clientSearch_TextChanged(object sender, EventArgs e)
         {
             string searchText = clientSearch.Text.Trim();
             LoadClients(searchText);
         }
-
         private void LoadClients(string searchText = "")
         {
             clientListView.CellClick -= clientListView_CellClick;
@@ -65,16 +63,10 @@ namespace ACS_PACLAR.BookingsForms
             dataAdapter.Fill(dataTable);
             clientListView.DataSource = dataTable;
 
-            if (clientListView.Columns["ClientID"] != null)
+            if (clientListView.Columns[ACSMessages.ClientID] != null)
             {
-                clientListView.Columns["ClientID"].Visible = false;
+                clientListView.Columns[ACSMessages.ClientID].Visible = false;
             }
-
-            // Adjust styles
-            clientListView.DefaultCellStyle.Font = new Font("Arial", 14);
-            clientListView.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Bold);
-            clientListView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
             clientListView.ClearSelection();
             clientListView.CurrentCell = null;
 
@@ -85,11 +77,11 @@ namespace ACS_PACLAR.BookingsForms
 
         private void clientListView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // Ensure a valid row is selected
+            if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = clientListView.Rows[e.RowIndex];
-                selectedClientId = Convert.ToInt32(row.Cells["ClientID"].Value);
-                MessageBox.Show($"Client selected: {row.Cells["ClientName"].Value}");
+                selectedClientId = Convert.ToInt32(row.Cells[ACSMessages.ClientID].Value);
+                MessageBox.Show($"Client selected: {row.Cells[ACSMessages.ClientName].Value}");
             }
         }
         private void clientListView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -106,7 +98,6 @@ namespace ACS_PACLAR.BookingsForms
                     {
                         int serviceId = Convert.ToInt32(serviceIdCell);
 
-                        // Fetch HourlyRate
                         decimal hourlyRate = GetHourlyRate(serviceId);
                         row.Cells["HourlyRate"].Value = hourlyRate;
                     }
@@ -114,7 +105,6 @@ namespace ACS_PACLAR.BookingsForms
 
                 if (clientListView.Columns[e.ColumnIndex].Name == "HoursRendered")
                 {
-                    // Calculate Subtotal
                     var hourlyRateCell = row.Cells["HourlyRate"].Value;
                     var hoursRenderedCell = row.Cells["HoursRendered"].Value;
 
@@ -133,7 +123,6 @@ namespace ACS_PACLAR.BookingsForms
             {
                 string query = ACSMessages.LoadServicesData;
 
-    
                 SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                 DataTable servicesTable = new DataTable();
                 adapter.Fill(servicesTable);
@@ -143,11 +132,10 @@ namespace ACS_PACLAR.BookingsForms
                 blankRow["ServiceName"] = "-Select a Service-";
                 servicesTable.Rows.InsertAt(blankRow, 0);
 
-   
                 serviceBox.DataSource = servicesTable;
                 serviceBox.DisplayMember = "ServiceName";
-                serviceBox.ValueMember = "ServiceID"; 
-                serviceBox.SelectedIndex = 0; 
+                serviceBox.ValueMember = "ServiceID";
+                serviceBox.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -178,7 +166,6 @@ namespace ACS_PACLAR.BookingsForms
                 return 0;
             }
         }
-
         private void ServiceBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (serviceBox.SelectedValue != null && serviceBox.SelectedValue is int serviceId)
@@ -276,7 +263,6 @@ namespace ACS_PACLAR.BookingsForms
 
             bookingSummaryGrid.Columns.Clear();
 
-            // Add the columns with headers
             bookingSummaryGrid.Columns.Add("ServiceID", "Service ID");
             bookingSummaryGrid.Columns["ServiceID"].Visible = false;
 
@@ -285,7 +271,6 @@ namespace ACS_PACLAR.BookingsForms
             bookingSummaryGrid.Columns.Add("HoursRendered", "Hours Rendered");
             bookingSummaryGrid.Columns.Add("Subtotal", "Subtotal");
 
-            // Add the "Delete" button column
             DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn
             {
                 HeaderText = "Actions",
@@ -295,10 +280,6 @@ namespace ACS_PACLAR.BookingsForms
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             };
             bookingSummaryGrid.Columns.Add(deleteButtonColumn);
-
-            bookingSummaryGrid.DefaultCellStyle.Font = new Font("Arial", 12);
-            bookingSummaryGrid.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Bold);
-            bookingSummaryGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
 
             bookingSummaryGrid.ColumnHeadersVisible = true;
@@ -315,7 +296,6 @@ namespace ACS_PACLAR.BookingsForms
                                 MessageBoxIcon.Warning);
             }
         }
-
         private bool IsDateOccupied(DateTime date)
         {
             string query = "SELECT COUNT(*) FROM Bookings WHERE CAST(BookingDate AS DATE) = @Date";
@@ -352,8 +332,6 @@ namespace ACS_PACLAR.BookingsForms
                 return result != null ? result.ToString() : string.Empty;
             }
         }
-
-
         private void addBookingBtn_Click(object sender, EventArgs e)
         {
             try
@@ -369,8 +347,8 @@ namespace ACS_PACLAR.BookingsForms
                 }
 
                 // Validate if the date is already booked
-                DateTime bookingDate = datePicker.Value.Date;
-                if (IsDateOccupied(bookingDate))
+                DateTime bookingDate = datePicker.Value; // Includes both Date and Time
+                if (IsDateOccupied(bookingDate.Date)) // Check only date part for conflicts
                 {
                     MessageBox.Show("The selected date is already booked. Please choose another date.",
                                     "Date Unavailable",
@@ -400,17 +378,16 @@ namespace ACS_PACLAR.BookingsForms
 
                 int bookingId;
 
-                string insertBookingQuery = "INSERT INTO dbo.Bookings (ClientName, BookingDate, TotalAmount, CreatedAt) " +
-                                             "VALUES (@ClientName, @BookingDate, @TotalAmount, @CreatedAt); " +
+                string insertBookingQuery = "INSERT INTO dbo.Bookings (ClientName, BookingDate, TotalAmount) " +
+                                             "VALUES (@ClientName, @BookingDate, @TotalAmount); " +
                                              "SELECT CAST(SCOPE_IDENTITY() AS INT);";
 
                 using (SqlConnection connection = new SqlConnection(ACSMessages.DBConnectionString))
                 using (SqlCommand command = new SqlCommand(insertBookingQuery, connection))
                 {
                     command.Parameters.AddWithValue("@ClientName", GetClientNameById(selectedClientId));
-                    command.Parameters.AddWithValue("@BookingDate", bookingDate);
+                    command.Parameters.AddWithValue("@BookingDate", bookingDate); // Includes Date and Time
                     command.Parameters.AddWithValue("@TotalAmount", totalAmount);
-                    command.Parameters.AddWithValue("@CreatedAt", DateTime.Now);
 
                     connection.Open();
                     bookingId = (int)command.ExecuteScalar();
@@ -461,5 +438,4 @@ namespace ACS_PACLAR.BookingsForms
             }
         }
     }
-
-    }
+}

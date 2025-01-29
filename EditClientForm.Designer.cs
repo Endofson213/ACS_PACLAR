@@ -37,6 +37,7 @@
             label2 = new Label();
             label1 = new Label();
             button1 = new Button();
+            label6 = new Label();
             SuspendLayout();
             // 
             // emailBox
@@ -113,11 +114,24 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += saveBtn_Click;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label6.Location = new Point(170, 9);
+            label6.Name = "label6";
+            label6.Size = new Size(89, 21);
+            label6.TabIndex = 28;
+            label6.Text = "Edit Client";
+            label6.TextAlign = ContentAlignment.TopCenter;
+            // 
             // EditClientForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(422, 220);
+            Controls.Add(label6);
             Controls.Add(button1);
             Controls.Add(emailBox);
             Controls.Add(addressBox);
@@ -144,5 +158,6 @@
         private Label label2;
         private Label label1;
         private Button button1;
+        private Label label6;
     }
 }
